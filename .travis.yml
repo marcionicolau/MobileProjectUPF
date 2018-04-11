@@ -7,6 +7,12 @@ cache:
     - $HOME/.yarn-cache
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
+notifications:
+  email:
+    recipients:
+      - nicolau.3g@gmail.com
+    on_success: always
+    on_failure: always    
 env:
   - NODE_ENV='test'
 script:
