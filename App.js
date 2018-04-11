@@ -4,7 +4,7 @@
  * @flow
  */
 
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   Alert,
   Platform,
@@ -14,17 +14,17 @@ import {
   TouchableOpacity,
   TouchableNativeFeedback,
   TouchableWithoutFeedback,
-  View
-} from "react-native";
+  View,
+} from 'react-native';
 
 type Props = {};
 export default class App extends Component<Props> {
   _onPressButton() {
-    Alert.alert("You tapped the button!");
+    Alert.alert('You tapped the button!');
   }
 
   _onLongPressButton() {
-    Alert.alert("You long-pressed the button!");
+    Alert.alert('You long-pressed the button!');
   }
 
   render() {
@@ -43,9 +43,7 @@ export default class App extends Component<Props> {
         <TouchableNativeFeedback
           onPress={this._onPressButton}
           background={
-            Platform.OS === "android"
-              ? TouchableNativeFeedback.SelectableBackground()
-              : ""
+            Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''
           }
         >
           <View style={styles.button}>
@@ -74,16 +72,16 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     paddingTop: 60,
-    alignItems: "center"
+    alignItems: 'center',
   },
   button: {
-    marginBottom: 30,
+    marginBottom: 20,
     width: 260,
-    alignItems: "center",
-    backgroundColor: "#2196F3"
+    alignItems: 'center',
+    backgroundColor: '#2196F3',
   },
   buttonText: {
-    padding: 20,
-    color: "white"
-  }
+    padding: 15,
+    color: 'black',
+  },
 });
