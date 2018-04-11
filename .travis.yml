@@ -16,8 +16,6 @@ notifications:
 env:
   matrix:
   - NODE_ENV='test'
-  global:
-    secure: sRP8EmWl6Twi+b+WRfsrT+xAeQoiPrXaoOIFDI5ZCRA0IJQOxCj6qVZM3/sRrddNLSd7Bv+fpcXBWpkQeOJQAJ86k86dQACKE+wk6zDuU7ounHNbxIbAZ8zRCj3X9N4xJpad4S10BulWkOtVanGV9qkTLjk8yd6fFHaFZy7KkyHlcr5EIQqGSX5+0iBlYAHg4uNKnMlzy1zkic3ie+lMXdCCu4Wty1G7L2FctT2Tbf342KMR6rppDfgM5UqJ+4KBPxuWrbAKbbGtJl9W7jBn2+OItZBYKvgFpFP/nSDdL+JFCxlioT4wkT1ML0n7B4OMjOIIT3fSFzVmXzc/LZDTpjbQUTvpsqu+hVr6B0kV3TfpHI+EOg71GOBfxkTfWk53XgGERqDGgemIGwn0+WdC58K5EM937xC3Q68LIX/ZmoyD9NtHegOwDC55qBGYLunnG9OH09Q+VEh6A8F18c0sWcZq9GpDNfF34iV9UzhsVQF0cxzHv1M2Y+viFPRigMsJqo0t/Nb7WvkdMd1p6QumuuSP9UUzWFrc9Z0vU/DQpnVNL+a5n4rW5OP4lVN2WGdLTVwKAxqkuvEwb27nmHhZ4my4sJ4j0SldaAT4ZPf6rdKl+ttAUmp0RAP2CTc7ANXVWHdBg+Rfd0A1YbHpkESc5IPiuXAaCJNV4i4XRSz13No=
 script:
 - cp env.example.js env.js
 - npm run lint
@@ -64,6 +62,7 @@ matrix:
     - cd android && ./gradlew assembleDebug && ./gradlew assembleRelease
     deploy:
       provider: releases
+      api_key: "PPh0E/YSQChHFHcXihyhg2W0cfG2xHWCZcdL05s4zUorjM4E3wX51XUdYmHjFMP/PKfozCAyb6OeRQxrEpuob+G02+0QaCCthEHJh9X9XNPXMl5665eOPrTZhn9t1QaKGASOqBVe4n2YcT4QHHTwd6q7ddeV/2TQIQ1+7kRY7WuxHDnnwWJIL0CZ/b0CjJ2om/s3ilTu10MSuEyRW7x9MbMuLtdZ9LImQsvlDF01VB1+BJBk9AglUVvrvO8GML8PDlMJwZbDrZ4f32NhjoBBsr0RxO0DY9jrDA0lDNgUulsWTS74HPXQAVZMVFzvg5aMjzpfG9MfiVJM0AkHoua7Kfv/FKEnWmWqxlWufCkTf4wqptgXYwceA10GlGAjC9RvSw7P/LG2YLvqsIa+ee7LVimtzVox9tYiSj/MR8Y0FvPNZ+CRZH9JOVe2hiCE01ffEBjdz0NA5ONo722ec42r5RhydDTcpeoF4FH0bpQ2RuMSLNNMy/iJEQ8n7eP/67UPMKHm/RYGygIJ8g33aSSnm5ZPWJRAATuzXX/RIDPKqwVSXqoY+m/YUbCEHvyBn9s0eW5GBYGzzyi9Z+t+3Rc4PfgW4k8PQXDsymF5GPgG+UXk9TEj6OtXN5j+oKhRaUr8nnOo27fwz2xNRIx1DWR6YZkqjXT2YfpdB8rQLqR3VaY="
       file: android/app/build/outputs/apk/app-release-unsigned.apk
       skip_cleanup: true
     on:
