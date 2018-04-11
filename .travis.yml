@@ -57,12 +57,13 @@ matrix:
       - extra-android-m2repository
       - extra-google-google_play_services
       - extra-google-m2repository
-      - addon-google_apis-google-24
+      - addon-google_apis-google-19
     script:
     - cd android && ./gradlew assembleDebug && ./gradlew assembleRelease
     deploy:
       provider: releases
-      api_key: PPh0E/YSQChHFHcXihyhg2W0cfG2xHWCZcdL05s4zUorjM4E3wX51XUdYmHjFMP/PKfozCAyb6OeRQxrEpuob+G02+0QaCCthEHJh9X9XNPXMl5665eOPrTZhn9t1QaKGASOqBVe4n2YcT4QHHTwd6q7ddeV/2TQIQ1+7kRY7WuxHDnnwWJIL0CZ/b0CjJ2om/s3ilTu10MSuEyRW7x9MbMuLtdZ9LImQsvlDF01VB1+BJBk9AglUVvrvO8GML8PDlMJwZbDrZ4f32NhjoBBsr0RxO0DY9jrDA0lDNgUulsWTS74HPXQAVZMVFzvg5aMjzpfG9MfiVJM0AkHoua7Kfv/FKEnWmWqxlWufCkTf4wqptgXYwceA10GlGAjC9RvSw7P/LG2YLvqsIa+ee7LVimtzVox9tYiSj/MR8Y0FvPNZ+CRZH9JOVe2hiCE01ffEBjdz0NA5ONo722ec42r5RhydDTcpeoF4FH0bpQ2RuMSLNNMy/iJEQ8n7eP/67UPMKHm/RYGygIJ8g33aSSnm5ZPWJRAATuzXX/RIDPKqwVSXqoY+m/YUbCEHvyBn9s0eW5GBYGzzyi9Z+t+3Rc4PfgW4k8PQXDsymF5GPgG+UXk9TEj6OtXN5j+oKhRaUr8nnOo27fwz2xNRIx1DWR6YZkqjXT2YfpdB8rQLqR3VaY=
+        api_key:
+          secure: dL4/pRYHl9atlnrOmPqz4zWTon7n+uF1FTc9eVTIdw7iBgbtbDFy/UPPQ9RNpShL1aeJ8XL7+E4eCUupQNZl5ew33nGQArpL+NdxM0m7XeW3u713eucZSoHx1WSJiJ8+lGL9G9sr0DUMTYA+VGx/q/Jf6v/Kg2iF/CXqMQ0ymyj3Qq0jhrowWipZSSg02SI/YfZyOt9RRutTsHDe6xPi0rfwBWJGKpMkwqAPvrJci8lQiyz1C3qnTYZ9RZTNf4c1YCTkvV/Buiwz1tYd/Ddb0JLwNXMt+RYF40HO9UOFZL2Zm+/GJGExWJhjnN8Rn8kjjTJ1i24ad8IA+5UrC4pTXsP3dE4ZKkcPEuCYTJAXmkGJUIobQ5oUDNwywTNgzbCP0xeWmxljw1PKhxuMSGn/eX9fvT1U5De4/Z/9uNubYcNowaREgnTLmDbmOFdZQLv9M5pTta3+ijRUnJ0ZE2TNQ3Nx6HV07mYId9v2tIuk6qj5uPZ1zdxsGiYKxNwQ6Nho/ZEQacu134v+LCoVCdEd6YgE4laa1DX91WzGX+kU1g7WErzV/ggSVqQbuPohcdHkWYBQXLu6/F0ztZCU9mQBYa92z3wGIeCSzrT+CHffIAwkvvZC8/5RII/akSknayGRsVJjbBBRrAweMK5b+FYpO6aAsyAkfiLq5NWKnQTnvTk=
       file: android/app/build/outputs/apk/app-release-unsigned.apk
       skip_cleanup: true
     on:
@@ -89,6 +90,4 @@ matrix:
       | xcpretty
     - travis_retry xctool run-tests -scheme MobileProjectUPF -sdk iphonesimulator
       -launch-timeout 90  ONLY_ACTIVE_ARCH=NO
-deploy:
-  api_key:
-    secure: xZjFECC6+LBNUV9fFTQIs2PawZjT+/YpdfkKz//oWdN7GK4va0iUMkWClg4d4tDYfJt3osldn8UgpzAhGAgzcnj5rUyrsuV6zajLWl1c9QpmBicta15Ud1O/hHXLumv5aO76Iwi4eCr4MI/UImfdbc21L5yYgjgVU/zIQpjH9zvaYFoeAetyfxp8v6Fmco/lBPj7CGhOuWstpjj3ZrX2X3D7TpJW1e7isfxBP5TlequxbQHG8OPEfTSuK6Dr8PrPwxMMwP2ftKrzn3Nl5WweFGIkWb3+5E4T9Gr8L3pyj3z/516DEe3gkR8oEPgE1mU5W0pCNWER9Ci8sfIew2kJgpygbRx1DCSm73UNOqlQwI/oTqCqdHzvcnKS26G/zE9ELv0D0Ipq82kroQJET1FZXuti7um58dSsZOxpFVB71sXMpnYxchUls87qrc0l+YlqPcB4zTjmNyAOz5QXo+v+KI93/cXA/E6cRsIL1U0xrIJhxTMMGUW95wQDf8Lql4j6QAokK1TceIJAxZaa3yu4fpWh6ooqsLa6VybsHRgX/y6sXIryMzy/2+5lS36pR0p51StTiSdctoWnFdb1xoxqRF8SSftcBkuuSeJr+EHVa7LSuI0N2e+VdyiCwlFphURmT/cUpdTeAUq+c6uIBA8pzj1eJq2B5sobrBYMqHy3l/I=
+
