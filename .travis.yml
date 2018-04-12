@@ -76,7 +76,7 @@ matrix:
     #   jdk: oraclejdk8
   - language: objective-c
     os: osx
-    osx_image: xcode8.3
+    osx_image: xcode9.3
     node_js: false
     before_install:
       - brew update
@@ -87,8 +87,8 @@ matrix:
       - travis_retry gem install xcpretty
       - npm i -g react-native-cli
       - travis_retry yarn
-    xcode_project: ios/MobileProjectUPF.xcodeproj
-    xcode_scheme: ios/MobileProjectUPFTests
+    # xcode_project: ios/MobileProjectUPF.xcodeproj
+    # xcode_scheme: ios/MobileProjectUPFTests
     script:
       - react-native link
       - react-native run-ios --scheme "MobileProjectUPF" --configuration=Debug
