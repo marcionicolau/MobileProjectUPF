@@ -59,7 +59,7 @@ matrix:
       - extra-google-m2repository
       - addon-google_apis-google-19
     script:
-      - cd android && ./gradlew assembleDebug && ./gradlew assembleRelease
+      - cd android && ./gradlew assembleDebug && ./gradlew assembleRelease && cd ..
       - ls android/app/build/outputs/apk
       - mkdir ~/deploy_apk && cp android/app/build/outputs/apk/*.apk ~/deploy_apk
       - ls ~/deploy_apk
