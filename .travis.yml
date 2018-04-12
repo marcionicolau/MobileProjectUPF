@@ -62,8 +62,7 @@ matrix:
     - cd android && ./gradlew assembleDebug && ./gradlew assembleRelease
     deploy:
       user: marcionicolau
-      password:
-        secure: qikXodm905BZ0aXx42ZHVLdcz3ii4n1Rp+ywodZDwv/rR8nQflo22l0nfD8HuaIQCNP/GzwAFp7Hl+vytcrdCRPkRt08HtQSz+z1XZTk2A3maeu5y5uCyzUKmC7uyDtM4eLumyZq8gi4WwWNDKmUf6rs8xpot1y+m6OhKser0HlT3sYUmE1AYO3/jJ+ilgSkFjmATlo9xp1m2Mpxh95odr3r0k826MH6k8RFXtgOnzqYLopxR5ofvd//BoeSAkSKF/CueMbe6B/vO2sljZj91He8YMe1LtSmt0mrMHY2pPIkJQnNGoZXGgDv/+7YWobymwJNdF2RioAPjdHKY1FmElsfnrO4ts6CjY1zO9OafR2XvmCqkb9dR+RNoDi3PwN3WBPLXH/a9HDhLFdb1mtt6xP+5TE9lb5kkD3PAcfFFHCcGqRiCJynfuAFAEfPcxO3bPAKVfMXSljSHdduOwTY4ye7AKgcvHYHEVzvgStFkNNzqBE7M4e+lSNzHuv+2a4x5kTkHxl4mujaTTT5UlAd7Nvi+HPABxGiyIWBuH0iREQIbBAeXARDiRTLIccUWXbTQiCGZeo0If8zN03drFLm5n6oxkEyK6DKvuMcbCrL2PrjeosSur9eqSyxdvKy+aK5Y24/9cizaXuMWN8p4JKKoFUC7pmMdxHyi3kvhKVFdYI=
+      password: qikXodm905BZ0aXx42ZHVLdcz3ii4n1Rp+ywodZDwv/rR8nQflo22l0nfD8HuaIQCNP/GzwAFp7Hl+vytcrdCRPkRt08HtQSz+z1XZTk2A3maeu5y5uCyzUKmC7uyDtM4eLumyZq8gi4WwWNDKmUf6rs8xpot1y+m6OhKser0HlT3sYUmE1AYO3/jJ+ilgSkFjmATlo9xp1m2Mpxh95odr3r0k826MH6k8RFXtgOnzqYLopxR5ofvd//BoeSAkSKF/CueMbe6B/vO2sljZj91He8YMe1LtSmt0mrMHY2pPIkJQnNGoZXGgDv/+7YWobymwJNdF2RioAPjdHKY1FmElsfnrO4ts6CjY1zO9OafR2XvmCqkb9dR+RNoDi3PwN3WBPLXH/a9HDhLFdb1mtt6xP+5TE9lb5kkD3PAcfFFHCcGqRiCJynfuAFAEfPcxO3bPAKVfMXSljSHdduOwTY4ye7AKgcvHYHEVzvgStFkNNzqBE7M4e+lSNzHuv+2a4x5kTkHxl4mujaTTT5UlAd7Nvi+HPABxGiyIWBuH0iREQIbBAeXARDiRTLIccUWXbTQiCGZeo0If8zN03drFLm5n6oxkEyK6DKvuMcbCrL2PrjeosSur9eqSyxdvKy+aK5Y24/9cizaXuMWN8p4JKKoFUC7pmMdxHyi3kvhKVFdYI=
       provider: releases
       file: android/app/build/outputs/apk/app-release-unsigned.apk
       skip_cleanup: true
