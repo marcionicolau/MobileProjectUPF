@@ -79,19 +79,22 @@ matrix:
     osx_image: xcode8.3
     node_js: false
     before_install:
-    - nvm install 8
-    - node --version
-    - travis_retry npm install -g yarn
+      - nvm install 8
+      - node --version
+      - travis_retry npm install -g yarn
     install:
-    - travis_retry gem install xcpretty
-    - travis_retry yarn
+      - travis_retry gem install xcpretty
+      - npm i -g react-native-cli
+      - travis_retry yarn
     xcode_project: ios/MobileProjectUPF.xcodeproj
     xcode_scheme: ios/MobileProjectUPFTests
     script:
-    - cd ios
-    - xcodebuild -scheme MobileProjectUPF -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty
-    - travis_retry xctool run-tests -scheme MobileProjectUPF -sdk iphonesimulator -launch-timeout 90  ONLY_ACTIVE_ARCH=NO
-    - cd ..
+      - react-native run-ios --scheme "MobileProjectUPF" --configuration=Debug -- verbose
+      - react-native run-ios --scheme "MobileProjectUPF" --configuration=Release 
+    # - cd ios
+    # - xcodebuild -scheme MobileProjectUPF -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty
+    # - travis_retry xctool run-tests -scheme MobileProjectUPF -sdk iphonesimulator -launch-timeout 90  ONLY_ACTIVE_ARCH=NO
+    # - cd ..
 deploy:
   skip_cleanup: true
   provider: releases
@@ -101,6 +104,7 @@ deploy:
     - android/app/build/outputs/apk/app-release-unsigned.apk
     - android/app/build/outputs/apk/app-debug.apk
     - ios/build/Build/Products/Debug-iphonesimulator/MobileProjectUPF.app
+    - ios/build/Build/Products/Release-iphonesimulator/MobileProjectUPF.app
   on:
     repo: marcionicolau/MobileProjectUPF
     tags: true
