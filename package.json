@@ -12,6 +12,9 @@
     "coverage": "rimraf coverage && jest --coverage"
   },
   "dependencies": {
+    "appcenter": "^1.4.0",
+    "appcenter-analytics": "^1.4.0",
+    "appcenter-crashes": "^1.4.0",
     "react": "16.3.1",
     "react-native": "0.55.2"
   },
