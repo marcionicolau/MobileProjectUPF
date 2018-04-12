@@ -80,7 +80,7 @@ matrix:
     node_js: false
     before_install:
       - brew update
-      - brew install watchman
+      - brew link --overwrite python@2
       - nvm install 8
       - travis_retry npm install -g yarn
       - gem install cocoapods --user-install
@@ -89,16 +89,10 @@ matrix:
       - travis_retry gem install xcpretty
       - npm i -g react-native-cli
       - travis_retry yarn
-    # xcode_project: ios/MobileProjectUPF.xcodeproj
-    # xcode_scheme: ios/MobileProjectUPFTests
     script:
       - react-native link
       - react-native run-ios --scheme "MobileProjectUPF" --configuration=Debug
       - react-native run-ios --scheme "MobileProjectUPF" --configuration=Release 
-    # - cd ios
-    # - xcodebuild -scheme MobileProjectUPF -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty
-    # - travis_retry xctool run-tests -scheme MobileProjectUPF -sdk iphonesimulator -launch-timeout 90  ONLY_ACTIVE_ARCH=NO
-    # - cd ..
 deploy:
   skip_cleanup: true
   provider: releases
