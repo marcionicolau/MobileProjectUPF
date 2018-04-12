@@ -79,8 +79,9 @@ matrix:
     osx_image: xcode8.3
     node_js: false
     before_install:
+      - brew update
+      - brew install watchman
       - nvm install 8
-      - node --version
       - travis_retry npm install -g yarn
     install:
       - travis_retry gem install xcpretty
@@ -89,7 +90,8 @@ matrix:
     xcode_project: ios/MobileProjectUPF.xcodeproj
     xcode_scheme: ios/MobileProjectUPFTests
     script:
-      - react-native run-ios --scheme "MobileProjectUPF" --configuration=Debug -- verbose
+      - react-native link
+      - react-native run-ios --scheme "MobileProjectUPF" --configuration=Debug
       - react-native run-ios --scheme "MobileProjectUPF" --configuration=Release 
     # - cd ios
     # - xcodebuild -scheme MobileProjectUPF -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty
