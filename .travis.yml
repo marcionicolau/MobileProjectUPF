@@ -61,9 +61,9 @@ matrix:
     script:
     - cd android && ./gradlew assembleDebug && ./gradlew assembleRelease
     deploy:
-      user: marcionicolau
-      password: qikXodm905BZ0aXx42ZHVLdcz3ii4n1Rp+ywodZDwv/rR8nQflo22l0nfD8HuaIQCNP/GzwAFp7Hl+vytcrdCRPkRt08HtQSz+z1XZTk2A3maeu5y5uCyzUKmC7uyDtM4eLumyZq8gi4WwWNDKmUf6rs8xpot1y+m6OhKser0HlT3sYUmE1AYO3/jJ+ilgSkFjmATlo9xp1m2Mpxh95odr3r0k826MH6k8RFXtgOnzqYLopxR5ofvd//BoeSAkSKF/CueMbe6B/vO2sljZj91He8YMe1LtSmt0mrMHY2pPIkJQnNGoZXGgDv/+7YWobymwJNdF2RioAPjdHKY1FmElsfnrO4ts6CjY1zO9OafR2XvmCqkb9dR+RNoDi3PwN3WBPLXH/a9HDhLFdb1mtt6xP+5TE9lb5kkD3PAcfFFHCcGqRiCJynfuAFAEfPcxO3bPAKVfMXSljSHdduOwTY4ye7AKgcvHYHEVzvgStFkNNzqBE7M4e+lSNzHuv+2a4x5kTkHxl4mujaTTT5UlAd7Nvi+HPABxGiyIWBuH0iREQIbBAeXARDiRTLIccUWXbTQiCGZeo0If8zN03drFLm5n6oxkEyK6DKvuMcbCrL2PrjeosSur9eqSyxdvKy+aK5Y24/9cizaXuMWN8p4JKKoFUC7pmMdxHyi3kvhKVFdYI=
       provider: releases
+      api_key:
+        secure: x01jpX7WkpFNDIeJi/dZfNnN9jnRaP+ZkrGpM8ckzWuF541Ch8DniNld43tmXkLjBNCenkge+XX29bqbE0XmZGJA0Hg/D223oub8MOAkj+jhDgV+dXQ2g8pfvpu8b9w6AP3xN3+jWjoquLSGGucOS+Dwpp6N+9kPHTX2I4UUKGClYwA380Q8qeKd2ploW6mtXvooEqj8Jh+jBtsiDxgalAAfgw0d44jGlz/6KwiaEhlY0bKzul3G4th4nHGwCNYqYbtmQ7DOeNXyOQIMRPkGY8yb9Oufa0f9gp0TrTBA/vdEN8dH6iHxvaVzIXJdpbuyNW1PXa52zI/XwPWWMAamt3145VOD1x6zroODz1hlW+4LWZx/VWXwz+Y9maI3XiFhLilNzVJvoKKtRhT7CLT+Q6XV9ZlckhwflAkAGethPaCA7YedSklbeabzZfxbW0RPAGa3JBrEnbMyvfCUm9LdXfGK212j4hOhEz8bi+xpgpRDKBY/cwfF/JX9F/L7NDR2CEoAH58ez2Ssu/nopajy4WDk7Bwyp0b+krnawNYg9wUGlZK6AVSisfth4wgFdeYZH8nuYRjomLA1LueYhzhjqOWI2GbJk6UWi88AAt46/ffA4mxJyun8p6T7F+Bwlk/mPesKOnK1k6mRyjPCypUowuyOtyIfqR7BlSX8FfOwtg8=
       file: android/app/build/outputs/apk/app-release-unsigned.apk
       skip_cleanup: true
     on:
@@ -90,4 +90,11 @@ matrix:
       | xcpretty
     - travis_retry xctool run-tests -scheme MobileProjectUPF -sdk iphonesimulator
       -launch-timeout 90  ONLY_ACTIVE_ARCH=NO
-
+# deploy:
+#   provider: releases
+#   api_key:
+#     secure: x01jpX7WkpFNDIeJi/dZfNnN9jnRaP+ZkrGpM8ckzWuF541Ch8DniNld43tmXkLjBNCenkge+XX29bqbE0XmZGJA0Hg/D223oub8MOAkj+jhDgV+dXQ2g8pfvpu8b9w6AP3xN3+jWjoquLSGGucOS+Dwpp6N+9kPHTX2I4UUKGClYwA380Q8qeKd2ploW6mtXvooEqj8Jh+jBtsiDxgalAAfgw0d44jGlz/6KwiaEhlY0bKzul3G4th4nHGwCNYqYbtmQ7DOeNXyOQIMRPkGY8yb9Oufa0f9gp0TrTBA/vdEN8dH6iHxvaVzIXJdpbuyNW1PXa52zI/XwPWWMAamt3145VOD1x6zroODz1hlW+4LWZx/VWXwz+Y9maI3XiFhLilNzVJvoKKtRhT7CLT+Q6XV9ZlckhwflAkAGethPaCA7YedSklbeabzZfxbW0RPAGa3JBrEnbMyvfCUm9LdXfGK212j4hOhEz8bi+xpgpRDKBY/cwfF/JX9F/L7NDR2CEoAH58ez2Ssu/nopajy4WDk7Bwyp0b+krnawNYg9wUGlZK6AVSisfth4wgFdeYZH8nuYRjomLA1LueYhzhjqOWI2GbJk6UWi88AAt46/ffA4mxJyun8p6T7F+Bwlk/mPesKOnK1k6mRyjPCypUowuyOtyIfqR7BlSX8FfOwtg8=
+#   file: android/app/build/outputs/apk/app-release-unsigned.apk
+#   on:
+#     repo: marcionicolau/MobileProjectUPF
+#     tags: true
