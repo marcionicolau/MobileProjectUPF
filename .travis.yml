@@ -83,6 +83,8 @@ matrix:
       - brew install watchman
       - nvm install 8
       - travis_retry npm install -g yarn
+      - gem install cocoapods --user-install
+      - pod repo update
     install:
       - travis_retry gem install xcpretty
       - npm i -g react-native-cli
