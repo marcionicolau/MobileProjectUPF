@@ -80,7 +80,6 @@ matrix:
     node_js: false
     before_install:
       - brew update
-      - brew link --overwrite python@2
       - nvm install 8
       - travis_retry npm install -g yarn
       - gem install cocoapods --user-install
