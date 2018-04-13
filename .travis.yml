@@ -82,7 +82,7 @@ matrix:
       - brew update
       - nvm install 8
       - travis_retry npm install -g yarn
-      - gem install cocoapods --user-install
+      - gem install cocoapods 
       - pod repo update
     install:
       - travis_retry gem install xcpretty
