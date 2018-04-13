@@ -77,6 +77,8 @@ matrix:
       - travis_retry yarn
     script:
       - react-native run-ios --scheme "MobileProjectUPF" --configuration=Release 
+      - ls ios
+      - ls build
 deploy:
   skip_cleanup: true
   provider: releases
@@ -85,6 +87,7 @@ deploy:
   file: 
     - android/app/build/outputs/apk/app-release-unsigned.apk
     - ios/build/Build/Products/Release-iphonesimulator/MobileProjectUPF.app
+    - build/Build/Products/Release-iphonesimulator/MobileProjectUPF.app
   on:
     repo: marcionicolau/MobileProjectUPF
     tags: true
