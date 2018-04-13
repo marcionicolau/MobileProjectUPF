@@ -41,8 +41,7 @@ matrix:
     before_install:
       - nvm install 8
       - node --version
-      - travis_retry curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key
-        add -
+      - travis_retry curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
       - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
       - travis_retry sudo apt-get update -qq
       - travis_retry sudo apt-get install -y -qq yarn
@@ -54,26 +53,13 @@ matrix:
       - tools
       - platform-tools
       - build-tools-$ANDROID_BUILD_TOOLS
-      - android-23
+      - android-$ANDROID_API
       - extra-android-m2repository
       - extra-google-google_play_services
       - extra-google-m2repository
       - addon-google_apis-google-19
     script:
-      - cd android && ./gradlew assembleDebug && ./gradlew assembleRelease && cd ..
-      - mkdir $HOME/deploy_apk && cp android/app/build/outputs/apk/*.apk $HOME/deploy_apk
-    # deploy:
-    #   provider: releases
-    #   api_key:
-    #     secure: x01jpX7WkpFNDIeJi/dZfNnN9jnRaP+ZkrGpM8ckzWuF541Ch8DniNld43tmXkLjBNCenkge+XX29bqbE0XmZGJA0Hg/D223oub8MOAkj+jhDgV+dXQ2g8pfvpu8b9w6AP3xN3+jWjoquLSGGucOS+Dwpp6N+9kPHTX2I4UUKGClYwA380Q8qeKd2ploW6mtXvooEqj8Jh+jBtsiDxgalAAfgw0d44jGlz/6KwiaEhlY0bKzul3G4th4nHGwCNYqYbtmQ7DOeNXyOQIMRPkGY8yb9Oufa0f9gp0TrTBA/vdEN8dH6iHxvaVzIXJdpbuyNW1PXa52zI/XwPWWMAamt3145VOD1x6zroODz1hlW+4LWZx/VWXwz+Y9maI3XiFhLilNzVJvoKKtRhT7CLT+Q6XV9ZlckhwflAkAGethPaCA7YedSklbeabzZfxbW0RPAGa3JBrEnbMyvfCUm9LdXfGK212j4hOhEz8bi+xpgpRDKBY/cwfF/JX9F/L7NDR2CEoAH58ez2Ssu/nopajy4WDk7Bwyp0b+krnawNYg9wUGlZK6AVSisfth4wgFdeYZH8nuYRjomLA1LueYhzhjqOWI2GbJk6UWi88AAt46/ffA4mxJyun8p6T7F+Bwlk/mPesKOnK1k6mRyjPCypUowuyOtyIfqR7BlSX8FfOwtg8=
-    #   file: 
-    #     - android/app/build/outputs/apk/app-release-unsigned.apk
-    #     - android/app/build/outputs/apk/app-debug.apk
-    #   skip_cleanup: true
-    # on:
-    #   repo: marcionicolau/MobileProjectUPF
-    #   tags: true
-    #   jdk: oraclejdk8
+      - cd android && ./gradlew assembleRelease && cd ..
   - language: objective-c
     os: osx
     osx_image: xcode9.3
@@ -85,13 +71,11 @@ matrix:
       - travis_retry npm install -g yarn
       - gem install cocoapods 
       - pod repo update
-      - pod install
+      - cd ios && pod install && cd ..
     install:
-    #  - travis_retry gem install xcpretty
       - npm i -g react-native-cli
       - travis_retry yarn
     script:
-      - react-native run-ios --scheme "MobileProjectUPF" --configuration=Debug
       - react-native run-ios --scheme "MobileProjectUPF" --configuration=Release 
 deploy:
   skip_cleanup: true
@@ -100,8 +84,6 @@ deploy:
     secure: x01jpX7WkpFNDIeJi/dZfNnN9jnRaP+ZkrGpM8ckzWuF541Ch8DniNld43tmXkLjBNCenkge+XX29bqbE0XmZGJA0Hg/D223oub8MOAkj+jhDgV+dXQ2g8pfvpu8b9w6AP3xN3+jWjoquLSGGucOS+Dwpp6N+9kPHTX2I4UUKGClYwA380Q8qeKd2ploW6mtXvooEqj8Jh+jBtsiDxgalAAfgw0d44jGlz/6KwiaEhlY0bKzul3G4th4nHGwCNYqYbtmQ7DOeNXyOQIMRPkGY8yb9Oufa0f9gp0TrTBA/vdEN8dH6iHxvaVzIXJdpbuyNW1PXa52zI/XwPWWMAamt3145VOD1x6zroODz1hlW+4LWZx/VWXwz+Y9maI3XiFhLilNzVJvoKKtRhT7CLT+Q6XV9ZlckhwflAkAGethPaCA7YedSklbeabzZfxbW0RPAGa3JBrEnbMyvfCUm9LdXfGK212j4hOhEz8bi+xpgpRDKBY/cwfF/JX9F/L7NDR2CEoAH58ez2Ssu/nopajy4WDk7Bwyp0b+krnawNYg9wUGlZK6AVSisfth4wgFdeYZH8nuYRjomLA1LueYhzhjqOWI2GbJk6UWi88AAt46/ffA4mxJyun8p6T7F+Bwlk/mPesKOnK1k6mRyjPCypUowuyOtyIfqR7BlSX8FfOwtg8=
   file: 
     - android/app/build/outputs/apk/app-release-unsigned.apk
-    - android/app/build/outputs/apk/app-debug.apk
-    - ios/build/Build/Products/Debug-iphonesimulator/MobileProjectUPF.app
     - ios/build/Build/Products/Release-iphonesimulator/MobileProjectUPF.app
   on:
     repo: marcionicolau/MobileProjectUPF
