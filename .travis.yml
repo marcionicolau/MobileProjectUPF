@@ -1,7 +1,4 @@
-language: android
-env:
-  - ANDROID_API=23
-  - ANDROID_BUILD_TOOLS=27.0.1  
+language: android 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/  
@@ -16,8 +13,8 @@ install:
   - npm install
 android:
   components:
-    - build-tools-$ANDROID_BUILD_TOOLS
-    - android-$ANDROID_API
+    - build-tools-27.0.1
+    - android-23
     - extra-android-m2repository
     - extra-google-google_play_services
     - extra-google-m2repository
