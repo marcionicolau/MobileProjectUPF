@@ -1,55 +1,37 @@
-language: node_js
-node_js:
-  - '8'
-sudo: false
-cache:
-  directories:
+language: android
+  os: linux
+  jdk: oraclejdk8
+  sudo: required
+  node_js: 
+    - '8'
+  env:
+    - ANDROID_API=23
+    - ANDROID_BUILD_TOOLS=27.0.1
+  before_cache:
+    - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+    - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+  cache:
+    directories:
     - "$HOME/.yarn-cache"
-    - "$HOME/.gradle/caches/"
-    - "$HOME/.gradle/wrapper/"
-notifications:
-  email:
-    recipients:
-    - nicolau.3g@gmail.com
-    - 161373@upf.br
-    on_success: always
-    on_failure: always
-env:
-  matrix:
-  - NODE_ENV='test'
-script:
-  - cp env.example.js env.js
-  - npm run lint
-  - npm test
-  - npm run bundle:ios
-  - npm run bundle:android
-matrix:
-  include:
-  - language: android
-    os: linux
-    jdk: oraclejdk8
-    env:
-      - ANDROID_API=23
-      - ANDROID_BUILD_TOOLS=27.0.1
-    before_cache:
-      - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-      - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
-    cache:
-      directories: "-$HOME/.gradle/caches/ -$HOME/.gradle/wrapper/"
-    sudo: required
-    node_js: false
-    before_install:
-      - nvm install 8
-      - node --version
-      - travis_retry curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-      - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-      - travis_retry sudo apt-get update -qq
-      - travis_retry sudo apt-get install -y -qq yarn
-      - chmod +x android/gradlew
-    install:
-    - yarn
-    android:
-      components:
+  notifications:
+    email:
+      recipients:
+      - nicolau.3g@gmail.com
+      - 161373@upf.br
+      on_success: always
+      on_failure: always
+  before_install:
+    # - nvm install 8
+    - node --version
+    - travis_retry curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+    - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+    - travis_retry sudo apt-get update -qq
+    - travis_retry sudo apt-get install -y -qq yarn
+    - chmod +x android/gradlew
+  install:
+    - yarn  
+  android:
+    components:
       - tools
       - platform-tools
       - build-tools-$ANDROID_BUILD_TOOLS
@@ -58,33 +40,14 @@ matrix:
       - extra-google-google_play_services
       - extra-google-m2repository
       - addon-google_apis-google-19
-    script:
-      - cd android && ./gradlew assembleRelease && cd ..
-  - language: objective-c
-    os: osx
-    osx_image: xcode9.3
-    node_js: false
-    podfile: ios/Podfile
-    before_install:
-      - brew update
-      - nvm install 8
-      - travis_retry npm install -g yarn
-      - gem install cocoapods 
-      - pod repo update
-      - cd ios && pod install && cd ..
-    install:
-      - npm i -g react-native-cli
-      - travis_retry yarn
-    script:
-      - react-native run-ios --scheme "MobileProjectUPF" --configuration=Release 
-      - ls ios/build/Build/Products/Release-iphonesimulator
+  script:
+    - cd android && ./gradlew assembleRelease && cd ..
 deploy:
   skip_cleanup: true
   provider: releases
   api_key:
     secure: x01jpX7WkpFNDIeJi/dZfNnN9jnRaP+ZkrGpM8ckzWuF541Ch8DniNld43tmXkLjBNCenkge+XX29bqbE0XmZGJA0Hg/D223oub8MOAkj+jhDgV+dXQ2g8pfvpu8b9w6AP3xN3+jWjoquLSGGucOS+Dwpp6N+9kPHTX2I4UUKGClYwA380Q8qeKd2ploW6mtXvooEqj8Jh+jBtsiDxgalAAfgw0d44jGlz/6KwiaEhlY0bKzul3G4th4nHGwCNYqYbtmQ7DOeNXyOQIMRPkGY8yb9Oufa0f9gp0TrTBA/vdEN8dH6iHxvaVzIXJdpbuyNW1PXa52zI/XwPWWMAamt3145VOD1x6zroODz1hlW+4LWZx/VWXwz+Y9maI3XiFhLilNzVJvoKKtRhT7CLT+Q6XV9ZlckhwflAkAGethPaCA7YedSklbeabzZfxbW0RPAGa3JBrEnbMyvfCUm9LdXfGK212j4hOhEz8bi+xpgpRDKBY/cwfF/JX9F/L7NDR2CEoAH58ez2Ssu/nopajy4WDk7Bwyp0b+krnawNYg9wUGlZK6AVSisfth4wgFdeYZH8nuYRjomLA1LueYhzhjqOWI2GbJk6UWi88AAt46/ffA4mxJyun8p6T7F+Bwlk/mPesKOnK1k6mRyjPCypUowuyOtyIfqR7BlSX8FfOwtg8=
   file: 
-    - ios/build/Build/Products/Release-iphonesimulator/MobileProjectUPF.app
     - android/app/build/outputs/apk/app-release-unsigned.apk
   on:
     repo: marcionicolau/MobileProjectUPF
