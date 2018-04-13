@@ -77,15 +77,15 @@ matrix:
       - travis_retry yarn
     script:
       - react-native run-ios --scheme "MobileProjectUPF" --configuration=Release 
-      - ls ios/build/Build/Products
+      - ls ios/build/Build/Products/Release-iphonesimulator
 deploy:
   skip_cleanup: true
   provider: releases
   api_key:
     secure: x01jpX7WkpFNDIeJi/dZfNnN9jnRaP+ZkrGpM8ckzWuF541Ch8DniNld43tmXkLjBNCenkge+XX29bqbE0XmZGJA0Hg/D223oub8MOAkj+jhDgV+dXQ2g8pfvpu8b9w6AP3xN3+jWjoquLSGGucOS+Dwpp6N+9kPHTX2I4UUKGClYwA380Q8qeKd2ploW6mtXvooEqj8Jh+jBtsiDxgalAAfgw0d44jGlz/6KwiaEhlY0bKzul3G4th4nHGwCNYqYbtmQ7DOeNXyOQIMRPkGY8yb9Oufa0f9gp0TrTBA/vdEN8dH6iHxvaVzIXJdpbuyNW1PXa52zI/XwPWWMAamt3145VOD1x6zroODz1hlW+4LWZx/VWXwz+Y9maI3XiFhLilNzVJvoKKtRhT7CLT+Q6XV9ZlckhwflAkAGethPaCA7YedSklbeabzZfxbW0RPAGa3JBrEnbMyvfCUm9LdXfGK212j4hOhEz8bi+xpgpRDKBY/cwfF/JX9F/L7NDR2CEoAH58ez2Ssu/nopajy4WDk7Bwyp0b+krnawNYg9wUGlZK6AVSisfth4wgFdeYZH8nuYRjomLA1LueYhzhjqOWI2GbJk6UWi88AAt46/ffA4mxJyun8p6T7F+Bwlk/mPesKOnK1k6mRyjPCypUowuyOtyIfqR7BlSX8FfOwtg8=
   file: 
-    - android/app/build/outputs/apk/app-release-unsigned.apk
     - ios/build/Build/Products/Release-iphonesimulator/MobileProjectUPF.app
+    - android/app/build/outputs/apk/app-release-unsigned.apk
   on:
     repo: marcionicolau/MobileProjectUPF
     tags: true
