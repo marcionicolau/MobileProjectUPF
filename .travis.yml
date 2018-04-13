@@ -20,8 +20,8 @@ android:
     - extra-google-m2repository
     - addon-google_apis-google-16
 script: 
-  - react-native run-android --variant=Release
-  - cd android && ./gradlew assembleRelease 
+  # - react-native run-android --variant=Release
+  - cd android && ./gradlew assembleRelease && cd ..
 deploy: 
   skip_cleanup: true
   provider: releases
