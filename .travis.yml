@@ -78,6 +78,7 @@ matrix:
     os: osx
     osx_image: xcode9.3
     node_js: false
+    podfile: ios/Podfile
     before_install:
       - brew update
       - nvm install 8
@@ -89,7 +90,6 @@ matrix:
       - npm i -g react-native-cli
       - travis_retry yarn
     script:
-      - react-native link
       - react-native run-ios --scheme "MobileProjectUPF" --configuration=Debug
       - react-native run-ios --scheme "MobileProjectUPF" --configuration=Release 
 deploy:
