@@ -85,8 +85,9 @@ matrix:
       - travis_retry npm install -g yarn
       - gem install cocoapods 
       - pod repo update
+      - pod install
     install:
-      - travis_retry gem install xcpretty
+    #  - travis_retry gem install xcpretty
       - npm i -g react-native-cli
       - travis_retry yarn
     script:
